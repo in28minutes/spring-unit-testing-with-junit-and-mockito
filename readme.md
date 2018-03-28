@@ -1,5 +1,5 @@
 # Spring Unit Testing with JUnit and Mockito
-## Jump into Unit Testing with the most popular unit testing frameworks - JUnit and Mockito
+## Learn Unit Testing with most popular frameworks - JUnit and Mockito
 
 * [Course Overview](#course-overview)
   - [Course Steps](#step-list)

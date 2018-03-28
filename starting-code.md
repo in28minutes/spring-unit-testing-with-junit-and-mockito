@@ -5,6 +5,8 @@ Current Directory : /in28Minutes/git/getting-started-in-5-steps/spring-unit-test
 ## Complete Code Example
 
 ### StringsTest.java
+
+```java
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
@@ -212,6 +214,7 @@ class StringsTest {
 	}
 
 }
+```
 
 ### /src/main/java/com/in28minutes/springunittestingwithmockito/business/ItemService.java
 
