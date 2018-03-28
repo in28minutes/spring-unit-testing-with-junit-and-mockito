@@ -72,6 +72,8 @@ JUnit 5 = JUnit Platform + JUnit Jupiter + JUnit Vintage
 - Other tips in the unit testt
 
 #### JUnit 5 vs JUnit 4
+- Neither test classes nor test methods need to be public
+- @DisplayName
 #### Annotations
 - Same as in JUnit 4 - @Test
 - Renamed
