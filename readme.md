@@ -15,6 +15,9 @@
 ## Course Checklist
 
 ### References
+- Intellij
+  - https://www.jetbrains.com/help/idea/configuring-testing-libraries.html
+  - https://blog.jetbrains.com/idea/2016/08/using-junit-5-in-intellij-idea/
 - Spring & Spring Boot Framework - https://www.youtube.com/watch?v=PSP1-2cN7vM&t=893s
 - Functional Programming - https://youtu.be/aFCNPHfvqEU
 - JUnit - https://junit.org/junit5/docs/current/user-guide/
