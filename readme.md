@@ -1,16 +1,6 @@
 # Spring Unit Testing with JUnit and Mockito
 ## Learn Unit Testing with most popular frameworks - JUnit and Mockito
 
-* [Course Overview](#course-overview)
-  - [Course Steps](#step-list)
-  - [Expectations](#expectations)
-* [Installing Eclipse, Maven and Java](#installing-tools)
-* [Running Examples](#running-examples)
-* [About in28Minutes](#about-in28minutes)
-  - [Our Beliefs](#our-beliefs)
-  - [Our Approach](#our-approach)
-  - [Find Us](#useful-links)
-  - [Other Courses](#other-courses)
 
 ## Course Checklist
 
