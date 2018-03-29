@@ -19,6 +19,7 @@
   - https://www.jetbrains.com/help/idea/configuring-testing-libraries.html
   - https://blog.jetbrains.com/idea/2016/08/using-junit-5-in-intellij-idea/
 - Spring & Spring Boot Framework - https://www.youtube.com/watch?v=PSP1-2cN7vM&t=893s
+- Introduction to JPA and Hibernate using Spring Boot Data Jpa - http://www.springboottutorial.com/introduction-to-jpa-with-spring-boot-data-jpa
 - Functional Programming - https://youtu.be/aFCNPHfvqEU
 - JUnit - https://junit.org/junit5/docs/current/user-guide/
 - AssertJ - https://joel-costigliola.github.io/assertj/
