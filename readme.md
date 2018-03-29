@@ -1,10 +1,149 @@
 # Unit Testing with Spring, JUnit and Mockito
 
+## Todo
+- Course Journey Overview Video
+- Intermediate Overview Videos
+- Tips : What are other things you can assert
+  - Writing Unit Tests for Other Request Methods
+  - status().isCreated(), status().is*(),header().string("location")
+- If you are a fan of functional programming
+  - Refactor SomeBusinessImpl
+- @DirtiesContext
+- Seperate Test Configuration
+- AssertJTest
+- JSONPathTest
+- HamcrestMatcherTest
+- Using @MockBean to mock out dependencies you do not want to talk to!
+- Easier Static Imports
+- Good Unit Test
+  - Readable Unit Tests
+  - Fails only when there are logic failures
+  - FIRST
+  - Importance of Performance
+
+```
+package com.in28minutes.springunittestingwithmockito;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.Test;
+
+public class AssertjTest {
+
+  @Test
+  public void basicHamcrestMatchers() {
+    //List
+    List<Integer> scores = Arrays.asList(99, 100, 101, 105);
+    
+    assertThat(scores).hasSize(4);
+    assertThat(scores).contains(100, 101);
+    assertThat(scores).allMatch(x -> x > 90);
+    assertThat(scores).allMatch(x -> x < 200);
+
+    // String
+    assertThat("").isEmpty();
+
+    // Array
+    Integer[] marks = { 1, 2, 3 };
+
+    assertThat(marks).hasSize(3);
+    assertThat(marks).contains(2, 3, 1);
+
+  }
+}
+```
+
+```
+package com.in28minutes.springunittestingwithmockito;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.List;
+
+import org.junit.Test;
+
+import com.jayway.jsonpath.JsonPath;
+import com.jayway.jsonpath.ReadContext;
+
+public class JsonPathTest {
+  @Test
+  public void jsonAssertTest() {
+    String responseFromService = "[{\"id\":10001,\"name\":\"Chocolates\",\"quantity\":25,\"price\":2,\"value\":50},"
+        + "{\"id\":10002,\"name\":\"Biscuits\",\"quantity\":50,\"price\":2,\"value\":100},"
+        + "{\"id\":10003,\"name\":\"Pens\",\"quantity\":25,\"price\":3,\"value\":75},"
+        + "{\"id\":10004,\"name\":\"Pencils\",\"quantity\":25,\"price\":2,\"value\":50}]";
+    
+    ReadContext ctx = JsonPath.parse(responseFromService);
+    
+    List<Integer> allIds = ctx.read("$..id");
+    assertThat(allIds).containsExactly(10001,10002,10003,10004);
+    System.out.println(ctx.read("$.length()]").toString());
+    System.out.println(ctx.read("$.[2]").toString());
+    System.out.println(ctx.read("$.[0:2]").toString());//0 inclusive 2 exclusive
+    System.out.println(ctx.read("$[?(@.quantity==50)]").toString());
+  }
+
+}
+```
+
+```
+package com.in28minutes.springunittestingwithmockito;
+
+import static org.hamcrest.CoreMatchers.hasItems;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.arrayContainingInAnyOrder;
+import static org.hamcrest.Matchers.arrayWithSize;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.isEmptyString;
+import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.core.Every.everyItem;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.Test;
+
+public class HamcrestMatcherTest {
+
+  @Test
+  public void basicHamcrestMatchers() {
+    
+    //List
+    List<Integer> scores = Arrays.asList(99, 100, 101, 105);
+    assertThat(scores, hasSize(4));
+    assertThat(scores, hasItems(100, 101));
+    assertThat(scores, everyItem(greaterThan(90)));
+    assertThat(scores, everyItem(lessThan(200)));
+
+    // String
+    assertThat("", isEmptyString());
+
+    // Array
+    Integer[] marks = { 1, 2, 3 };
+
+    assertThat(marks, arrayWithSize(3));
+    assertThat(marks, arrayContainingInAnyOrder(2, 3, 1));
+
+  }
+}
+```
 ## Learn Unit Testing with most popular frameworks - Spring Boot, JUnit and Mockito
 
 Spring Boot is the most popular framework to develop RESTful Services. It has awesome unit testing capabilities through Spring Boot Starter Test. Mockito is the most popular mocking framework. JUnit is most popular Java Unit Testing Framework.
 
-In this course, we build Simple RESTful Services and learn how to unit test them with a combination Spring Boot Starter Test, Mockito and JUnit. We will build RESTful services talking to multiple layers - web, business and data. We discuss how you can unit test each of these layers independently.
+In this course, you will learn to build unit tests for simple RESTful Services with Spring Boot Starter Test, Mockito and JUnit. You will learn to write independent unit tests for RESTful web services talking with multiple layers - web, business and data. You will learn how to write integration tests using an in memory database H2.
+
+You will build the unit tests step by step - in more than 50 steps. This course would be a perfect first step as an introduction to unit testing with Spring Boot and Mockito Frameworks.
+
+You will be using Spring (Dependency Management), Spring Boot, Maven (dependencies management), Eclipse (IDE), in memory database H2 and Tomcat Embedded Web Server. We will help you set up each one of these.
+
+You will use all the frameworks that are part of Spring Boot Starter Test - JUnit, Spring Test, Spring Boot Test, AssertJ, Hamcrest, Mockito, JSONassert and JsonPath.
+
+You will learn to use the most important Unit Testing Annotations - @RunWith(SpringRunner.class), @SpringBootTest, @WebMvcTest, @DataJpaTest and @MockBean.
 
 ### Recommended Tools
 - Java 8 or Later
@@ -36,22 +175,7 @@ In this course, we build Simple RESTful Services and learn how to unit test them
   - https://github.com/in28minutes/MockitoTutorialForBeginners/blob/master/Step15.md
   - https://github.com/in28minutes/MockitoTutorialForBeginners/tree/master/src/test/java/com/in28minutes/powermock
 
-### Spring Boot Unit Testing
-spring-boot-starter-test “Starter” includes
-- JUnit
-- Spring Test & Spring Boot Test
-- AssertJ
-- Hamcrest
-- Mockito 
-- JSONassert
-- JsonPath
-
 ### Mockito
-- A few mockito examples mocking List class
-- Multiple return values
-- Introduction to Argument Matchers
-- stub method
-- Throwing exceptions
 
 Easier Static Imports
 ```
@@ -63,101 +187,37 @@ org.assertj.core.api.Assertions
 org.hamcrest.Matchers
 org.hamcrest.CoreMatchers
 ```
-
-#### Tips
-- How to verify calls on a mock? Verify how many times a method is called. 
-- How to capture an argument which is passed to a mock?
-Spy!
-- Step 06 : Introduction to BDD. Given When Then. BDD Mockito Syntax.
-- Mocking Static, Private Methods and Constructors
-
-## Spring Boot Unit Testing
-- SpringRunner.class
-- @SpringBootTest
-- @WebMvcTest
-- @DataJpaTest
-- @MockBean
-
-#### Tips
-- @DirtiesContext
-- Seperate Test Configuration
-
-### Unit Testing Tips
-- Readability of Unit Tests
-  - Naming Test Methods
-  - Highlight Important Values in Tests
-  - Readable Assert Statements
-  - BadTest vs GoodTest
-- Fails only when there are real logic failures
-- Unit Testing Best Practices
-  - FIRST
-- Performance
-- TDD
-
-### Introduction
-Developing your first application with XYZ Framework is fun.
-
-Introduction to XYZ Framework..
-
-In this course, you will learn the basics developing a Basic Todo Management Application using XYZ Framework.
-
-You will build the application step by step - in more than 25 steps. This course would be a perfect first step as an introduction to XYZ Framework.
-
-You will be using Spring (Dependency Management), Spring MVC, Spring Boot, Spring Security (Authentication and Authorization), BootStrap (Styling Pages), Maven (dependencies management), Eclipse (IDE) and Tomcat Embedded Web Server. We will help you set up each one of these.
-
 ### What You will learn
-
-- You will learn to Topic No 1
-- You will understand about Topic No 1
-- You will develop a great application
-
-##### Examples
-- You will learn to design and develop SOAP and RESTful web services with Spring Boot
-- You will learn the magic of Spring Boot - Auto Configuration, Spring Initializr and Starter Projects
-- You will learn to connect web services to JPA/Hibernate with Spring Boot
-- You will understand how to implement Exception Handling, Validation, HATEOAS and filtering for RESTful Web Services.
-- You will learn to use a wide variety of Spring Boot Starter Projects - Spring Boot Web, Spring Boot Web Services, Spring Boot Data JPA
-- You will learn how to version, monitor (Spring Boot Actuator) and document (Swagger) your RESTful Web Services with Spring Boot
-- You will understand the best practices in designing RESTful web services
-- You will understand about WSDL, SOAP Header, SOAP Body, SOAP Fault, XSD, JAXB and EndPoint
-- You will develop a Todo Management Application step by step with login and logout functionalities
-- You will learn to use an Annotation based approach - @RequestParam, @ModelAttribute, @SessionAttributes
-- You will understand the basics of developing a Web Application - POST, GET, HTTP, MVC Pattern
-- You will learn the basics of JSP, JSTL, EL, Spring Tag Libraries
-- You will learn some of the magic of Spring Boot
-- You will understand Spring MVC in depth - DispatcherServlet , Model, Controllers and ViewResolver
-- You will learn the magic of Spring Boot - Auto Configuration, Spring Initializr and Starter Projects
-- You will learn to develop RESTful web services with Spring Boot
-- You will learn to develop a Web Application connecting to JPA/Hibernate Step by Step with Spring MVC and Spring Boot
-- You will learn to use a wide variety of Spring Boot Starter Projects - Spring Boot Web, Spring Boot Test, Spring Boot Data JPA, Spring Boot Data REST
-- You will understand Spring MVC in depth - DispatcherServlet , Model, Controllers and ViewResolver
-- You will understand how to make best use of Spring Boot Actuator and Spring Boot Developer Tools
-- You will learn how to externalise application configuration using Spring Boot Profiles and Dynamic Configuration
-- You will understand and use the embedded servlet container options provided by Spring Boot - Tomcat, Jetty and Undertow
 - You will learn to write great Unit and Integration tests using Spring Boot Starter Test
-
+- You will learn to write unit tests using Mocks and Spys created with Mockito
+- You will learn to write independent unit tests for RESTful web services talking with multiple layers - web, business and data
+- You will learn to write integration tests using an in memory database - H2
+- You will learn to use all the frameworks that are part of Spring Boot Starter Test - JUnit, Spring Test, Spring Boot Test, AssertJ, Hamcrest, Mockito, JSONassert and JsonPath.
+- You will learn to use the most important Unit Testing Annotations - @RunWith(SpringRunner.class), @SpringBootTest, @WebMvcTest, @DataJpaTest and @MockBean.
 
 ### Requirements
 - You should have working knowledge of Java and Annotations. 
 - We will help you install Eclipse and get up and running with Maven and Tomcat.
-
+- You should have basic knowledge about Spring, Spring Boot and JPA/Hibernate. We provide resources that can be used to enrich your knowledge in the course.
 
 ### Step Wise Details
-- Step 01: Learn to Dance
-- Step 02: 
-- Step 03: 
-- Step 04: 
-- Step 05: 
-- Step 06: 
-- Step 07: 
-- Step 08: 
-- Step 09: 
-- Step 10: 
-- Step 11: 
-- Step 12: 
-- Step 13: 
-- Step 14: 
-- Step 15: 
+
+#### Mockito
+- Step 01: Setting up the project using Spring Initializr
+- Step 02: Writing Unit Test for a Simple Business Service
+- Step 03: Setting up a Business Service to call a Data Service
+- Step 04: Writing your first unit test with Stub
+- Step 05: Exercise Solution - Updating Tests 2 & 3 to use Stubs - Problem with Stubs.
+- Step 06: Writing Unit Tests with Mocking using Mockito
+- Step 07: Exercise Solution - Updating Tests 2 & 3 to use Mockito
+- Step 08: More Refactoring - @Mock, @InjectMocks and @RunWith(MockitoJUnitRunner.class)
+- Step 09: Mockito Tips - Multiple Return Values and Specific Argument Matchers
+- Step 10: Mockito Tips - Argument Matchers
+- Step 11: Mockito Tips - Verify method calls
+- Step 12: Mockito Tips - Argument Capture
+- Step 13: Mockito Tips - Argument Capture on Multiple Calls
+- Step 14: Introduction to Spy
+- Step 15: Mockito FAQ
 - Step 16: 
 - Step 17: 
 - Step 18: 
@@ -168,6 +228,34 @@ You will be using Spring (Dependency Management), Spring MVC, Spring Boot, Sprin
 - Step 23: 
 - Step 24: 
 - Step 25: 
+
+#### Spring Unit Testing
+- Step 01: Creating a Hello World Controller
+- Step 02: Using Mock Mvc to test Hello World Controller
+- Step 03: Using Response Matchers to check status and content
+- Step 04: Creating a Basic REST Service in Item Controller
+- Step 05: Unit Testing Item Controller and Basic JSON Assertions
+- Step 06: Digging deeper into JSON Assert
+- Step 07: Writing a REST Service talking to Business Layer
+- Step 08: Writing Unit Test for REST Service mocking Business Layer
+- Step 09: Prepare Data Layers with JPA, Hibernate and H2
+- Step 10: Create Item Entity and Populate data with data.sql
+- Step 11: Create a RESTful Service talking to the database
+- Step 12: Writing Unit Test for Web Layer - Controller - Using Mock MVC
+- Step 13: Writing Unit Test for Business Layer - Mocking
+- Step 14: Writing Unit Test for Data Layer - Data JPA Test
+- Step 15: Writing an Integration Test using @SpringBootTest
+- Step 16: 
+- Step 17: 
+- Step 18: 
+- Step 19: 
+- Step 20: 
+- Step 21: 
+- Step 22: 
+- Step 23: 
+- Step 24: 
+- Step 25: 
+
 
 ### Course Recording Notes
 
