@@ -3,23 +3,26 @@
 ## Todo
 - Course Journey Overview Video
 - Intermediate Overview Videos
-- Tips : What are other things you can assert
-  - Writing Unit Tests for Other Request Methods
+- Writing Unit Tests for Other Request Methods
   - status().isCreated(), status().is*(),header().string("location")
+- Using @MockBean to mock out dependencies you do not want to talk to!
+- @DirtiesContext
+  - https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/annotation/DirtiesContext.html
+- Seperate Test Configuration
+  - src/test/resources/application.properties
+  - @TestPropertySource(locations="classpath:test.properties")
 - If you are a fan of functional programming
   - Refactor SomeBusinessImpl
-- @DirtiesContext
-- Seperate Test Configuration
-- AssertJTest
-- JSONPathTest
-- HamcrestMatcherTest
-- Using @MockBean to mock out dependencies you do not want to talk to!
+- Better Assertions - HamcrestMatcherTest
+- Better Assertions - AssertJTest
+- Better Assertions - JSONPathTest
 - Easier Static Imports
-- Good Unit Test
+- Good Unit Tests
   - Readable Unit Tests
   - Fails only when there are logic failures
-  - FIRST
   - Importance of Performance
+  - FIRST
+  - Continuous Integration and Commit Often
 
 ```
 package com.in28minutes.springunittestingwithmockito;
