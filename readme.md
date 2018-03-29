@@ -1,8 +1,20 @@
-# Spring Unit Testing with JUnit and Mockito
-## Learn Unit Testing with most popular frameworks - JUnit and Mockito
+# Unit Testing with Spring, JUnit and Mockito
 
+## Learn Unit Testing with most popular frameworks - Spring Boot, JUnit and Mockito
 
-## Course Checklist
+Spring Boot is the most popular framework to develop RESTful Services. It has awesome unit testing capabilities through Spring Boot Starter Test. Mockito is the most popular mocking framework. JUnit is most popular Java Unit Testing Framework.
+
+In this course, we build Simple RESTful Services and learn how to unit test them with a combination Spring Boot Starter Test, Mockito and JUnit. We will build RESTful services talking to multiple layers - web, business and data. We discuss how you can unit test each of these layers independently.
+
+### Recommended Tools
+- Java 8 or Later
+- Eclipse Oxygen or Later
+- Spring Boot 2.0.0.RELEASE or Later
+
+### Installing Java 8 and Eclipse
+- Installation Video : https://www.youtube.com/playlist?list=PLBBog2r6uMCSmMVTW_QmDLyASBvovyAO3
+- GIT Repository For Installation : https://github.com/in28minutes/getting-started-in-5-steps
+- PDF : https://github.com/in28minutes/SpringIn28Minutes/blob/master/InstallationGuide-JavaEclipseAndMaven_v2.pdf
 
 ### References
 - Intellij
@@ -15,7 +27,7 @@
 - AssertJ - https://joel-costigliola.github.io/assertj/
 - Mockito - https://github.com/mockito/mockito/wiki/FAQ
 - JsonPath - https://github.com/json-path/JsonPath
-- JUnit 5 with Mockito and Spring Boot 2.0 - https://medium.com/@dSebastien/using-junit-5-with-spring-boot-2-kotlin-and-mockito-d5aea5b0c668
+- Setting up JUnit 5 with Mockito and Spring Boot 2.0 - https://medium.com/@dSebastien/using-junit-5-with-spring-boot-2-kotlin-and-mockito-d5aea5b0c668
 - Good Unit Testing 
   - https://github.com/mockito/mockito/wiki/How-to-write-good-tests
   - FIRST. https://pragprog.com/magazines/2012-01/unit-tests-are-first
@@ -23,70 +35,6 @@
 - Mocking Static, Private Methods and Constructors 
   - https://github.com/in28minutes/MockitoTutorialForBeginners/blob/master/Step15.md
   - https://github.com/in28minutes/MockitoTutorialForBeginners/tree/master/src/test/java/com/in28minutes/powermock
-
-
-### Getting Started
-- Eclipse - https://courses.in28minutes.com/p/eclipse-tutorial-for-beginners
-
-### Installing Tools
-- Installation Video : https://www.youtube.com/playlist?list=PLBBog2r6uMCSmMVTW_QmDLyASBvovyAO3
-- GIT Repository For Installation : https://github.com/in28minutes/getting-started-in-5-steps
-- PDF : https://github.com/in28minutes/SpringIn28Minutes/blob/master/InstallationGuide-JavaEclipseAndMaven_v2.pdf
-
-## Running Examples
-- Download the zip or clone the Git repository.
-- Unzip the zip file (if you downloaded one)
-- Open Command Prompt and Change directory (cd) to folder containing pom.xml
-- Open Eclipse 
-   - File -> Import -> Existing Maven Project -> Navigate to the folder where you unzipped the zip
-   - Select the right project
-- Choose the Spring Boot Application file (search for file with @SpringBootApplication)
-- Right Click on the file and Run as Java Application
-- You are all Set
-- For help : use our installation guide - https://www.youtube.com/playlist?list=PLBBog2r6uMCSmMVTW_QmDLyASBvovyAO3
-
-## Overview
-
-### Introduction
-- Test Pyramid
-
-
-### JUnit 5
-JUnit 5 = JUnit Platform + JUnit Jupiter + JUnit Vintage
-- JUnit Platform = Building Blocks
-- JUnit Jupiter = new programming model +  extension model + extensions - assertions, annotations
-- JUnit Vintage = Support for old JUnit version ( 3 & 4)
-
-#### Tips
-- Neither test classes nor test methods need to be public
-- @DisplayName
-- Other tips in the unit testt
-
-#### JUnit 5 vs JUnit 4
-- Neither test classes nor test methods need to be public
-- @DisplayName
-#### Annotations
-- Same as in JUnit 4 - @Test
-- Renamed
-  - @BeforeAll instead of @BeforeClass
-    - @AfterAll instead of @AfterClass
-    - @BeforeEach instead of @Before
-    - @AfterEach instead of @After
-  - @Disable instead of @Ignore
-  - @Tag  instead of @Category
-- New 
-  - @TestFactory for dynamic tests
-  - @Nested for nested tests
-  - @RepeatedTest to executed tests multiple times
-  - @EnabledOnOs
-  - @DisabledOnOs
-  - @EnabledOnJre
-
-#### Assertions
-- Same as JUnit 4
-  - assertTrue, assertSame, assertNull, assertNotSame, assertNotEquals, assertNotNull, assertFalse, assertEquals, assertArrayEquals, 
-- New
-  - assertAll and assertThrows
 
 ### Spring Boot Unit Testing
 spring-boot-starter-test “Starter” includes
@@ -145,7 +93,6 @@ Spy!
   - FIRST
 - Performance
 - TDD
-
 
 ### Introduction
 Developing your first application with XYZ Framework is fun.
