@@ -264,18 +264,15 @@ org.hamcrest.CoreMatchers
   - Exercise - Write Unit Test for findById method retrieving item with id 10001
 - Step 15: Writing an Integration Test using @SpringBootTest
   - Exercise - Make Asserts Better
-- Tip : Using @MockBean to mock out dependencies you do not want to talk to!
-- Tip : Seperate Test Configuration
-  - src/test/resources/application.properties
-  - @TestPropertySource(locations="classpath:test.properties")
-- Tip : Writing Unit Tests for Other Request Methods
-  - status().isCreated(), status().is*(),header().string("location")
-- Refactor SomeBusinessImpl to use Functional Programming
-- Better Assertions with Hamcrest - HamcrestMatcherTest
-- Better Assertions with AssertJ - AssertJTest
-- Better Assertions with JSONPath - JSONPathTest
-- Easier Static Imports
-- Tip : Measuring Test Coverage with Eclipse
+- Step 16: Tip : Using @MockBean to mock out dependencies you do not want to talk to!
+- Step 17: Tip : Seperate Test Configuration
+- Step 18: Writing Unit Tests for Other Request Methods
+- Step 19: Refactor SomeBusinessImpl to use Functional Programming
+- Step 20: Better Assertions with Hamcrest - HamcrestMatcherTest
+- Step 21: Better Assertions with AssertJ - AssertJTest
+- Step 22: Better Assertions with JSONPath - JSONPathTest
+- Step 23: Easier Static Imports
+- Step 24: Tip : Measuring Test Coverage with Eclipse
 
 
 ### Course Recording Notes
