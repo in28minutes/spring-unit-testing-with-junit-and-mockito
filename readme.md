@@ -1,8 +1,20 @@
 # Unit Testing with Spring, JUnit and Mockito
 
 ## Todo
-- Course Journey Overview Video
+
+- Exercises - One Per Section
+  - Add an exercise after
+    - Step 10: Mockito Tips - Argument Matchers
 - Intermediate Overview Videos
+  - Intro to Mockito Section
+    - Why are we talking in depth about Mockito in a Spring Unit Testing course?
+  - Intro to the Spring Unit Testing Section
+    - Why are we creating controllers?
+
+- Intro and Conclusion
+- Course Journey Overview Video
+
+
 - Writing Unit Tests for Other Request Methods
   - status().isCreated(), status().is*(),header().string("location")
 - Using @MockBean to mock out dependencies you do not want to talk to!
@@ -210,8 +222,10 @@ org.hamcrest.CoreMatchers
 - Step 02: Writing Unit Test for a Simple Business Service
 - Step 03: Setting up a Business Service to call a Data Service
 - Step 04: Writing your first unit test with Stub
+  - Exercise - Update Tests 2 & 3
 - Step 05: Exercise Solution - Updating Tests 2 & 3 to use Stubs - Problem with Stubs.
 - Step 06: Writing Unit Tests with Mocking using Mockito
+  - Exercise - Updating Tests 2 & 3 to use Mockito
 - Step 07: Exercise Solution - Updating Tests 2 & 3 to use Mockito
 - Step 08: More Refactoring - @Mock, @InjectMocks and @RunWith(MockitoJUnitRunner.class)
 - Step 09: Mockito Tips - Multiple Return Values and Specific Argument Matchers

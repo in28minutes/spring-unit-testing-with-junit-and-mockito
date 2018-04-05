@@ -1,8 +1,18 @@
 # Unit Testing with JUnit 5
 
 ## Todo
+- Exercises
+	- Step 04 - First Unit Test with JUnit - String length() method
+		- Write unit test for Math.min and Math.max methods!
+	- Step 05 - Writing JUnit Assertions - assertNull and assertTrue
+		- Exercise : Write assertEquals for two other data types
+	- Step 06 - Writing Assertions for Arrays - assertArrayEquals
+		- Spot the bug : Reverse expected and actual values
+	- Step 11 - Basics of Parameterized tests 
+		- Write unit tests using ints attribute of Parameterized Test for a Math method.
 - Intro to Course and Conclusion
-- Test Pyramid
+- Introduction to Unit Testing - Step 01
+	- Test Pyramid
 - JUnit 4 vs JUnit 5
 - JUnit 5 = Platform + Jupiter + Vintage
 - Warning before going to JUnit 4
@@ -11,6 +21,9 @@
   	- Patterns - http://xunitpatterns.com
 	- Continuous Integration
 		- Commit Often
+- Test Coverage
+- Running in a Build
+
 
 ## Learn Unit Testing with most popular framework - JUnit 5
 
