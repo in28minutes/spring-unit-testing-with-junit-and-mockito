@@ -62,7 +62,7 @@ public class ItemControllerTest {
 		//JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
 		
 	}
-
+	
 	@Test
 	public void retrieveAllItems_basic() throws Exception {
 		when(businessService.retrieveAllItems()).thenReturn(
@@ -77,6 +77,24 @@ public class ItemControllerTest {
 		MvcResult result = mockMvc.perform(request)
 				.andExpect(status().isOk())
 				.andExpect(content().json("[{id:3,name:Item3,price:20}, {id:2,name:Item2,price:10}]"))
+				.andReturn();
+		//JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
+		
+	}
+
+	@Test
+	public void retrieveAllItems_noitems() throws Exception {
+		when(businessService.retrieveAllItems()).thenReturn(
+				Arrays.asList()
+				);
+		
+		RequestBuilder request = MockMvcRequestBuilders
+				.get("/all-items-from-database")
+				.accept(MediaType.APPLICATION_JSON);
+		
+		MvcResult result = mockMvc.perform(request)
+				.andExpect(status().isOk())
+				.andExpect(content().json("[]"))
 				.andReturn();
 		//JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
 		

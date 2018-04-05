@@ -1,15 +1,6 @@
 # Unit Testing with JUnit 5
 
 ## Todo
-- Exercises
-	- Step 04 - First Unit Test with JUnit - String length() method
-		- Write unit test for Math.min and Math.max methods!
-	- Step 05 - Writing JUnit Assertions - assertNull and assertTrue
-		- Exercise : Write assertEquals for two other data types
-	- Step 06 - Writing Assertions for Arrays - assertArrayEquals
-		- Spot the bug : Reverse expected and actual values
-	- Step 11 - Basics of Parameterized tests 
-		- Write unit tests using ints attribute of Parameterized Test for a Math method.
 - Intro to Course and Conclusion
 - Introduction to Unit Testing - Step 01
 	- Test Pyramid
@@ -82,6 +73,16 @@ In this Beginners Tutorial on JUnit 5, you will learn how to
 ### Requirements
 - You should have working knowledge of Java and Annotations. 
 - We will help you install Eclipse and get up and running with Maven and Tomcat.
+
+### Exercises
+- Step 04 - First Unit Test with JUnit - String length() method
+	- Write unit test for Math.min and Math.max methods!
+- Step 05 - Writing JUnit Assertions - assertNull and assertTrue
+	- Exercise : Write assertEquals for two other data types
+- Step 06 - Writing Assertions for Arrays - assertArrayEquals
+	- Spot the bug : Reverse expected and actual values
+- Step 11 - Basics of Parameterized tests 
+	- Write unit tests using ints attribute of Parameterized Test for a Math method.
 
 ### Step By Step Details
 - Step 02 - First Junit Test - Red bar

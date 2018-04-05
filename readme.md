@@ -3,23 +3,18 @@
 ## Todo
 
 - Exercises - One Per Section
-  - Add an exercise after
-    - Step 10: Mockito Tips - Argument Matchers
 - Intermediate Overview Videos
   - Intro to Mockito Section
     - Why are we talking in depth about Mockito in a Spring Unit Testing course?
   - Intro to the Spring Unit Testing Section
     - Why are we creating controllers?
-
+  - Approach to the Multiple Layers Part
 - Intro and Conclusion
 - Course Journey Overview Video
-
-
 - Writing Unit Tests for Other Request Methods
   - status().isCreated(), status().is*(),header().string("location")
 - Using @MockBean to mock out dependencies you do not want to talk to!
-- @DirtiesContext
-  - https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/annotation/DirtiesContext.html
+- Integration Test vs Unit Test - The lines are blurred
 - Seperate Test Configuration
   - src/test/resources/application.properties
   - @TestPropertySource(locations="classpath:test.properties")
@@ -255,13 +250,16 @@ org.hamcrest.CoreMatchers
 - Step 06: Digging deeper into JSON Assert
 - Step 07: Writing a REST Service talking to Business Layer
 - Step 08: Writing Unit Test for REST Service mocking Business Layer
+
 - Step 09: Prepare Data Layers with JPA, Hibernate and H2
 - Step 10: Create Item Entity and Populate data with data.sql
 - Step 11: Create a RESTful Service talking to the database
 - Step 12: Writing Unit Test for Web Layer - Controller - Using Mock MVC
-- Step 13: Writing Unit Test for Business Layer - Mocking
+- Step 13: Exercise & Solution - Writing Unit Test for Business Layer - Mocking
 - Step 14: Writing Unit Test for Data Layer - Data JPA Test
+  - Exercise - Write Unit Test for findById method retrieving item with id 10001
 - Step 15: Writing an Integration Test using @SpringBootTest
+  - Exercise - Make Asserts Better
 - Step 16: 
 - Step 17: 
 - Step 18: 

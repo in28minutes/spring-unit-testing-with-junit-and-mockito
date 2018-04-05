@@ -3,6 +3,7 @@ package com.in28minutes.unittesting.unittesting.data;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,6 +24,13 @@ public class ItemRepositoryTest {
 	public void testFindAll() {
 		List<Item> items = repository.findAll();
 		assertEquals(3,items.size());
+	}
+
+	@Test
+	public void testFindOne() {
+		Item item = repository.findById(10001).get();
+		
+		assertEquals("Item1",item.getName());
 	}
 
 }
