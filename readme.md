@@ -1,35 +1,37 @@
 # Unit Testing with Spring, JUnit and Mockito
 
 ## Todo
-
-- Exercises - One Per Section
+- Intro and Conclusion
+- Course Journey Overview Video
 - Intermediate Overview Videos
   - Intro to Mockito Section
     - Why are we talking in depth about Mockito in a Spring Unit Testing course?
   - Intro to the Spring Unit Testing Section
     - Why are we creating controllers?
   - Approach to the Multiple Layers Part
-- Intro and Conclusion
-- Course Journey Overview Video
-- Writing Unit Tests for Other Request Methods
-  - status().isCreated(), status().is*(),header().string("location")
-- Using @MockBean to mock out dependencies you do not want to talk to!
-- Integration Test vs Unit Test - The lines are blurred
-- Seperate Test Configuration
+
+
+- Tip : Using @MockBean to mock out dependencies you do not want to talk to!
+- Tip : Seperate Test Configuration
   - src/test/resources/application.properties
   - @TestPropertySource(locations="classpath:test.properties")
-- If you are a fan of functional programming
-  - Refactor SomeBusinessImpl
-- Better Assertions - HamcrestMatcherTest
-- Better Assertions - AssertJTest
-- Better Assertions - JSONPathTest
+- Tip : Writing Unit Tests for Other Request Methods
+  - status().isCreated(), status().is*(),header().string("location")
+- Refactor SomeBusinessImpl to use Functional Programming
+- Better Assertions with Hamcrest - HamcrestMatcherTest
+- Better Assertions with AssertJ - AssertJTest
+- Better Assertions with JSONPath - JSONPathTest
 - Easier Static Imports
-- Good Unit Tests
+- Tip : Measuring Test Coverage with Eclipse
+
+Done
+- Tip Patterns - http://xunitpatterns.com REUSE
+- Good Unit Tests REUSE
   - Readable Unit Tests
   - Fails only when there are logic failures
   - Importance of Performance
-  - FIRST
   - Continuous Integration and Commit Often
+
 
 ```
 package com.in28minutes.springunittestingwithmockito;
@@ -230,6 +232,8 @@ org.hamcrest.CoreMatchers
 - Step 13: Mockito Tips - Argument Capture on Multiple Calls
 - Step 14: Introduction to Spy
 - Step 15: Mockito FAQ
+
+
 - Step 16: 
 - Step 17: 
 - Step 18: 
@@ -260,16 +264,18 @@ org.hamcrest.CoreMatchers
   - Exercise - Write Unit Test for findById method retrieving item with id 10001
 - Step 15: Writing an Integration Test using @SpringBootTest
   - Exercise - Make Asserts Better
-- Step 16: 
-- Step 17: 
-- Step 18: 
-- Step 19: 
-- Step 20: 
-- Step 21: 
-- Step 22: 
-- Step 23: 
-- Step 24: 
-- Step 25: 
+- Tip : Using @MockBean to mock out dependencies you do not want to talk to!
+- Tip : Seperate Test Configuration
+  - src/test/resources/application.properties
+  - @TestPropertySource(locations="classpath:test.properties")
+- Tip : Writing Unit Tests for Other Request Methods
+  - status().isCreated(), status().is*(),header().string("location")
+- Refactor SomeBusinessImpl to use Functional Programming
+- Better Assertions with Hamcrest - HamcrestMatcherTest
+- Better Assertions with AssertJ - AssertJTest
+- Better Assertions with JSONPath - JSONPathTest
+- Easier Static Imports
+- Tip : Measuring Test Coverage with Eclipse
 
 
 ### Course Recording Notes

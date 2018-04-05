@@ -1,19 +1,16 @@
 # Unit Testing with JUnit 5
 
 ## Todo
+
 - Intro to Course and Conclusion
-- Introduction to Unit Testing - Step 01
-	- Test Pyramid
-- JUnit 4 vs JUnit 5
-- JUnit 5 = Platform + Jupiter + Vintage
-- Warning before going to JUnit 4
-- Best Practices
-	- FIRST. https://pragprog.com/magazines/2012-01/unit-tests-are-first
-  	- Patterns - http://xunitpatterns.com
-	- Continuous Integration
-		- Commit Often
-- Test Coverage
-- Running in a Build
+
+Recorded
+- Step 01 - Introduction to Unit Testing - Test Pyramid DONE	
+- JUnit 5 = Platform + Jupiter + Vintage DONE
+- JUnit 4 vs JUnit 5 DONE
+- Warning before going to JUnit 4 DONE
+- JUnit Best Practices DONE
+- Tip Patterns - http://xunitpatterns.com DONE
 
 ## Learn Unit Testing with most popular framework - JUnit 5
 
