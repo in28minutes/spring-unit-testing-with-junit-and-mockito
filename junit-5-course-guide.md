@@ -15,7 +15,6 @@
 - Test Coverage
 - Running in a Build
 
-
 ## Learn Unit Testing with most popular framework - JUnit 5
 
 JUnit is most popular Java Unit Testing Framework. The new version of JUnit - Junit 5 or Jupiter is even more special.
