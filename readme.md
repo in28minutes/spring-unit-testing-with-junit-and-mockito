@@ -11,6 +11,7 @@
   - Approach to the Multiple Layers Part
 
 
+- Tip : Keep an eye on performance!
 - Tip : Using @MockBean to mock out dependencies you do not want to talk to!
 - Tip : Seperate Test Configuration
   - src/test/resources/application.properties
@@ -124,6 +125,9 @@ public class HamcrestMatcherTest {
   @Test
   public void basicHamcrestMatchers() {
     
+    // String
+    assertThat("", isEmptyString());
+
     //List
     List<Integer> scores = Arrays.asList(99, 100, 101, 105);
     assertThat(scores, hasSize(4));
@@ -131,8 +135,6 @@ public class HamcrestMatcherTest {
     assertThat(scores, everyItem(greaterThan(90)));
     assertThat(scores, everyItem(lessThan(200)));
 
-    // String
-    assertThat("", isEmptyString());
 
     // Array
     Integer[] marks = { 1, 2, 3 };

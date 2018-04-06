@@ -15,6 +15,7 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
@@ -36,6 +37,7 @@ public class ListMockTest {
 	}
 
 	@Test
+	@Ignore
 	public void returnWithParameters() {
 		when(mock.get(0)).thenReturn("in28Minutes");
 		assertEquals("in28Minutes", mock.get(0));

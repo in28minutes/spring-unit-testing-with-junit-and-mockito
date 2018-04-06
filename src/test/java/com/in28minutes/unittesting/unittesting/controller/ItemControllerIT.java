@@ -16,9 +16,9 @@ public class ItemControllerIT {
 	
 	@Autowired
 	private TestRestTemplate restTemplate;
-	
+		
 	@Test
-	public void contextLoads() throws JSONException {
+	public void contextLoads() throws JSONException {	
 		
 		String response = this.restTemplate.getForObject("/all-items-from-database", String.class);
 		
