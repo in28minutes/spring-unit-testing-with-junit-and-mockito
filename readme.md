@@ -200,6 +200,7 @@ org.mockito.Mockito
 org.assertj.core.api.Assertions
 org.hamcrest.Matchers
 org.hamcrest.CoreMatchers
+org.hamcrest.MatcherAssert
 ```
 ### What You will learn
 - You will learn to write great Unit and Integration tests using Spring Boot Starter Test
