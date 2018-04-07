@@ -78,7 +78,7 @@ org.hamcrest.MatcherAssert
 ### Requirements
 - You should have working knowledge of Java and Annotations. 
 - We will help you install Eclipse and get up and running with Maven and Tomcat.
-- You should have basic knowledge about Spring, Spring Boot and JPA/Hibernate. We provide resources that can be used to enrich your knowledge in the course.
+- You should have basic knowledge about Spring, Spring Boot and JPA/Hibernate. We provide resources that can be used as starting points to enrich your knowledge in the course.
 
 ## Mockito
 
@@ -101,7 +101,6 @@ org.hamcrest.MatcherAssert
 - Step 13: Mockito Tips - Argument Capture on Multiple Calls
 - Step 14: Introduction to Spy
 - Step 15: Mockito FAQ
-
 
 ## Spring Boot & Mockito - Unit Testing
 

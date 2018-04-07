@@ -1,17 +1,5 @@
 # Unit Testing with JUnit 5
 
-## Todo
-
-- Intro to Course and Conclusion
-
-5
-- Step 01 - Introduction to Unit Testing - Test Pyramid
-- Quick Tip : JUnit 5 = Platform + Jupiter + Vintage
-- Quick Tip : JUnit 4 vs JUnit 5
-- JUnit 4 Section - First Version of the course
-- JUnit Best Practices DONE
-- Tip Patterns - http://xunitpatterns.com DONE
-
 ## Learn Unit Testing with most popular framework - JUnit 5
 
 JUnit is most popular Java Unit Testing Framework. The new version of JUnit - Junit 5 or Jupiter is even more special.
@@ -81,6 +69,7 @@ In this Beginners Tutorial on JUnit 5, you will learn how to
 	- Write unit tests using ints attribute of Parameterized Test for a Math method.
 
 ### Step By Step Details
+- Step 01 - Introduction to Unit Testing - Test Pyramid
 - Step 02 - First Junit Test - Red bar
 - Step 03 - Absence of failure is success
 - Step 04 - First Unit Test with JUnit - String length() method
@@ -97,6 +86,11 @@ In this Beginners Tutorial on JUnit 5, you will learn how to
 - Step 15 - Tip - Unit Testing for Performance
 - Step 16 - Tip - Disable Unit Tests
 - Step 17 - Tip - Grouping Tests with @Nested
+- Step 18 - Tip -  JUnit 5 = Platform + Jupiter + Vintage
+- Step 19 - Tip -  JUnit 4 vs JUnit 5
+- Step 99 - JUnit 4 Section - First Version of the course
+- Step 20 - Tip - JUnit Best Practices
+- Step 21 - Tip - JUnit Patterns - http://xunitpatterns.com
 
 ### Course Notes
 
