@@ -1,15 +1,5 @@
 # Unit Testing with Spring, JUnit and Mockito
 
-## Todo
-- Intro and Conclusion
-- Course Journey Overview Video
-- Intermediate Overview Videos
-  - Intro to Mockito Section
-    - Why are we talking in depth about Mockito in a Spring Unit Testing course?
-  - Intro to the Spring Unit Testing Section
-    - Why are we creating controllers?
-  - Approach to the Multiple Layers Part
-
 ## Learn Unit Testing with most popular frameworks - Spring Boot, JUnit and Mockito
 
 Spring Boot is the most popular framework to develop RESTful Services. It has awesome unit testing capabilities through Spring Boot Starter Test. Mockito is the most popular mocking framework. JUnit is most popular Java Unit Testing Framework.
@@ -79,7 +69,7 @@ org.hamcrest.MatcherAssert
 - You should have working knowledge of Java and Annotations. 
 - We will help you install Eclipse and get up and running with Maven and Tomcat.
 - You should have basic knowledge about Spring, Spring Boot and JPA/Hibernate. We provide resources that can be used as starting points to enrich your knowledge in the course.
-
+                                                                                
 ## Mockito
 
 ### Step By Step Details
@@ -114,7 +104,7 @@ org.hamcrest.MatcherAssert
 - Step 06: Digging deeper into JSON Assert
 - Step 07: Writing a REST Service talking to Business Layer
 - Step 08: Writing Unit Test for REST Service mocking Business Layer
-- Step 09: Prepare Data Layers with JPA, Hibernate and H2
+- Step 09 - 01 - Prepare Data Layers with JPA, Hibernate and H2
 - Step 10: Create Item Entity and Populate data with data.sql
 - Step 11: Create a RESTful Service talking to the database
 - Step 12: Writing Unit Test for Web Layer - Controller - Using Mock MVC
@@ -135,20 +125,6 @@ org.hamcrest.MatcherAssert
 - Step 24: Tip : Measuring Test Coverage with Eclipse
 - Step 25: Tip : Keep an eye on performance of unit tests!
 - Step 26: Good Unit Tests
-
-
-- Step 25: Tip : Keep an eye on performance of unit tests!
-- Step 16: Tip : Using @MockBean to mock out dependencies you do not want to talk to!
-- Step 17: Tip : Creating Different Test Configuration
-- Step 18: Writing Unit Tests for Other Request Methods
-- Step 19: Refactor SomeBusinessImpl to use Functional Programming
-- Step 24: Tip : Measuring Test Coverage with Eclipse
-- Step 20: Better Assertions with Hamcrest - HamcrestMatcherTest
-- Step 21: Better Assertions with AssertJ - AssertJTest
-- Step 22: Better Assertions with JSONPath - JSONPathTest
-- Step 23: Tip Patterns - http://xunitpatterns.com REUSE
-- Step 26: Good Unit Tests
-
 
 
 ### Course Recording Notes
