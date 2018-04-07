@@ -88,7 +88,6 @@ In this Beginners Tutorial on JUnit 5, you will learn how to
 - Step 17 - Tip - Grouping Tests with @Nested
 - Step 18 - Tip -  JUnit 5 = Platform + Jupiter + Vintage
 - Step 19 - Tip -  JUnit 4 vs JUnit 5
-- Step 99 - JUnit 4 Section - First Version of the course
 - Step 20 - Tip - JUnit Best Practices
 - Step 21 - Tip - JUnit Patterns - http://xunitpatterns.com
 
