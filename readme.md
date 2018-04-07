@@ -10,141 +10,6 @@
     - Why are we creating controllers?
   - Approach to the Multiple Layers Part
 
-
-- Tip : Keep an eye on performance!
-- Tip : Using @MockBean to mock out dependencies you do not want to talk to!
-- Tip : Seperate Test Configuration
-  - src/test/resources/application.properties
-  - @TestPropertySource(locations="classpath:test.properties")
-- Tip : Writing Unit Tests for Other Request Methods
-  - status().isCreated(), status().is*(),header().string("location")
-- Refactor SomeBusinessImpl to use Functional Programming
-- Better Assertions with Hamcrest - HamcrestMatcherTest
-- Better Assertions with AssertJ - AssertJTest
-- Better Assertions with JSONPath - JSONPathTest
-- Easier Static Imports
-- Tip : Measuring Test Coverage with Eclipse
-
-Done
-- Tip Patterns - http://xunitpatterns.com REUSE
-- Good Unit Tests REUSE
-  - Readable Unit Tests
-  - Fails only when there are logic failures
-  - Importance of Performance
-  - Continuous Integration and Commit Often
-
-
-```
-package com.in28minutes.springunittestingwithmockito;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.Arrays;
-import java.util.List;
-
-import org.junit.Test;
-
-public class AssertjTest {
-
-  @Test
-  public void basicHamcrestMatchers() {
-    //List
-    List<Integer> scores = Arrays.asList(99, 100, 101, 105);
-    
-    assertThat(scores).hasSize(4);
-    assertThat(scores).contains(100, 101);
-    assertThat(scores).allMatch(x -> x > 90);
-    assertThat(scores).allMatch(x -> x < 200);
-
-    // String
-    assertThat("").isEmpty();
-
-    // Array
-    Integer[] marks = { 1, 2, 3 };
-
-    assertThat(marks).hasSize(3);
-    assertThat(marks).contains(2, 3, 1);
-
-  }
-}
-```
-
-```
-package com.in28minutes.springunittestingwithmockito;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.List;
-
-import org.junit.Test;
-
-import com.jayway.jsonpath.JsonPath;
-import com.jayway.jsonpath.ReadContext;
-
-public class JsonPathTest {
-  @Test
-  public void jsonAssertTest() {
-    String responseFromService = "[{\"id\":10001,\"name\":\"Chocolates\",\"quantity\":25,\"price\":2,\"value\":50},"
-        + "{\"id\":10002,\"name\":\"Biscuits\",\"quantity\":50,\"price\":2,\"value\":100},"
-        + "{\"id\":10003,\"name\":\"Pens\",\"quantity\":25,\"price\":3,\"value\":75},"
-        + "{\"id\":10004,\"name\":\"Pencils\",\"quantity\":25,\"price\":2,\"value\":50}]";
-    
-    ReadContext ctx = JsonPath.parse(responseFromService);
-    
-    List<Integer> allIds = ctx.read("$..id");
-    assertThat(allIds).containsExactly(10001,10002,10003,10004);
-    System.out.println(ctx.read("$.length()]").toString());
-    System.out.println(ctx.read("$.[2]").toString());
-    System.out.println(ctx.read("$.[0:2]").toString());//0 inclusive 2 exclusive
-    System.out.println(ctx.read("$[?(@.quantity==50)]").toString());
-  }
-
-}
-```
-
-```
-package com.in28minutes.springunittestingwithmockito;
-
-import static org.hamcrest.CoreMatchers.hasItems;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.arrayContainingInAnyOrder;
-import static org.hamcrest.Matchers.arrayWithSize;
-import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.isEmptyString;
-import static org.hamcrest.Matchers.lessThan;
-import static org.hamcrest.core.Every.everyItem;
-
-import java.util.Arrays;
-import java.util.List;
-
-import org.junit.Test;
-
-public class HamcrestMatcherTest {
-
-  @Test
-  public void basicHamcrestMatchers() {
-    
-    // String
-    assertThat("", isEmptyString());
-
-    //List
-    List<Integer> scores = Arrays.asList(99, 100, 101, 105);
-    assertThat(scores, hasSize(4));
-    assertThat(scores, hasItems(100, 101));
-    assertThat(scores, everyItem(greaterThan(90)));
-    assertThat(scores, everyItem(lessThan(200)));
-
-
-    // Array
-    Integer[] marks = { 1, 2, 3 };
-
-    assertThat(marks, arrayWithSize(3));
-    assertThat(marks, arrayContainingInAnyOrder(2, 3, 1));
-
-  }
-}
-```
 ## Learn Unit Testing with most popular frameworks - Spring Boot, JUnit and Mockito
 
 Spring Boot is the most popular framework to develop RESTful Services. It has awesome unit testing capabilities through Spring Boot Starter Test. Mockito is the most popular mocking framework. JUnit is most popular Java Unit Testing Framework.
@@ -215,9 +80,10 @@ org.hamcrest.MatcherAssert
 - We will help you install Eclipse and get up and running with Maven and Tomcat.
 - You should have basic knowledge about Spring, Spring Boot and JPA/Hibernate. We provide resources that can be used to enrich your knowledge in the course.
 
-### Step Wise Details
+## Mockito
 
-#### Mockito
+### Step By Step Details
+
 - Step 01: Setting up the project using Spring Initializr
 - Step 02: Writing Unit Test for a Simple Business Service
 - Step 03: Setting up a Business Service to call a Data Service
@@ -237,18 +103,10 @@ org.hamcrest.MatcherAssert
 - Step 15: Mockito FAQ
 
 
-- Step 16: 
-- Step 17: 
-- Step 18: 
-- Step 19: 
-- Step 20: 
-- Step 21: 
-- Step 22: 
-- Step 23: 
-- Step 24: 
-- Step 25: 
+## Spring Boot & Mockito - Unit Testing
 
-#### Spring Unit Testing
+### Step By Step Details
+
 - Step 01: Creating a Hello World Controller
 - Step 02: Using Mock Mvc to test Hello World Controller
 - Step 03: Using Response Matchers to check status and content
@@ -257,7 +115,6 @@ org.hamcrest.MatcherAssert
 - Step 06: Digging deeper into JSON Assert
 - Step 07: Writing a REST Service talking to Business Layer
 - Step 08: Writing Unit Test for REST Service mocking Business Layer
-
 - Step 09: Prepare Data Layers with JPA, Hibernate and H2
 - Step 10: Create Item Entity and Populate data with data.sql
 - Step 11: Create a RESTful Service talking to the database
@@ -268,14 +125,31 @@ org.hamcrest.MatcherAssert
 - Step 15: Writing an Integration Test using @SpringBootTest
   - Exercise - Make Asserts Better
 - Step 16: Tip : Using @MockBean to mock out dependencies you do not want to talk to!
-- Step 17: Tip : Seperate Test Configuration
+- Step 17: Tip : Creating Different Test Configuration
 - Step 18: Writing Unit Tests for Other Request Methods
 - Step 19: Refactor SomeBusinessImpl to use Functional Programming
+  - Exercise - Convert the second method to use Functional Approach
 - Step 20: Better Assertions with Hamcrest - HamcrestMatcherTest
 - Step 21: Better Assertions with AssertJ - AssertJTest
 - Step 22: Better Assertions with JSONPath - JSONPathTest
 - Step 23: Easier Static Imports
 - Step 24: Tip : Measuring Test Coverage with Eclipse
+- Step 25: Tip : Keep an eye on performance of unit tests!
+- Step 26: Good Unit Tests
+
+
+- Step 25: Tip : Keep an eye on performance of unit tests!
+- Step 16: Tip : Using @MockBean to mock out dependencies you do not want to talk to!
+- Step 17: Tip : Creating Different Test Configuration
+- Step 18: Writing Unit Tests for Other Request Methods
+- Step 19: Refactor SomeBusinessImpl to use Functional Programming
+- Step 24: Tip : Measuring Test Coverage with Eclipse
+- Step 20: Better Assertions with Hamcrest - HamcrestMatcherTest
+- Step 21: Better Assertions with AssertJ - AssertJTest
+- Step 22: Better Assertions with JSONPath - JSONPathTest
+- Step 23: Tip Patterns - http://xunitpatterns.com REUSE
+- Step 26: Good Unit Tests
+
 
 
 ### Course Recording Notes

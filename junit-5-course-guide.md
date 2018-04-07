@@ -4,11 +4,11 @@
 
 - Intro to Course and Conclusion
 
-Recorded
-- Step 01 - Introduction to Unit Testing - Test Pyramid DONE	
-- JUnit 5 = Platform + Jupiter + Vintage DONE
-- JUnit 4 vs JUnit 5 DONE
-- Warning before going to JUnit 4 DONE
+5
+- Step 01 - Introduction to Unit Testing - Test Pyramid
+- Quick Tip : JUnit 5 = Platform + Jupiter + Vintage
+- Quick Tip : JUnit 4 vs JUnit 5
+- JUnit 4 Section - First Version of the course
 - JUnit Best Practices DONE
 - Tip Patterns - http://xunitpatterns.com DONE
 
