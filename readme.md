@@ -1,5 +1,7 @@
 # Unit Testing with Spring, JUnit and Mockito
 
+[![Image](https://www.springboottutorial.com/images/Course-Master-Java-Unit-Testing-with-Spring-Boot-Mockito.png "Master Java Unit Testing with Spring Boot & Mockito")](https://www.udemy.com/course/learn-unit-testing-with-spring-boot/)
+
 ## Learn Unit Testing with most popular frameworks - Spring Boot, JUnit and Mockito
 
 Spring Boot is the most popular framework to develop RESTful Services. It has awesome unit testing capabilities through Spring Boot Starter Test. Mockito is the most popular mocking framework. JUnit is most popular Java Unit Testing Framework.
@@ -127,80 +129,15 @@ org.hamcrest.MatcherAssert
 - Step 26: Good Unit Tests
 
 
-### Course Recording Notes
+### Troubleshooting
+- Refer our TroubleShooting Guide - https://github.com/in28minutes/in28minutes-initiatives/tree/master/The-in28Minutes-TroubleshootingGuide-And-FAQ
 
- #### Preview Video
-- Welcome to course on *** in ** simple steps.
-- I'm Ranga Karanam. I've so and so much experience with ... I've been using this framework for ...
-- At in28minutes, we ask one question everyday - How to create more effective courses? All our success - *** students on Udemy and *** subscribers on Youtube - is a result of this pursuit of excellence.
-- You will develop *** and *** using ***
-- You will  learn the basics like *** and move on to the advanced concepts like ***.
-- You will use 
-  - ... todo ...
-  - Maven for dependency management, building and running the application in tomcat.
-  - Eclipse IDE
-- All the code for this course and the step by step details are in our Github repository. 
-- We have an awesome installation guide to help you install Maven and Eclipse. You are NOT expected to have any experience with Eclipse, Maven, or Tomcat.
-- What are we waiting for? Lets have some fun with *** in *** steps. We had a lot of fun creating this course for you and We are confident that you will have a lot of fun. I hope you are as excited as we are to learn more. Go ahead and enroll for the course. Or take a test drive with a free preview. See you in the course.
+## Youtube Playlists - 500+ Videos
 
-#### Conclusion Video
-- Congratulations! You have successfully completed the course on ... We covered a wide range of topics starting from Spring, Spring Boot to ..... I'm sure you had a lot of fun doing this course. If you loved this course, we would love to hear from you. Do not forget to leave us a review. Until we see you in another in28minutes course, here's bye from the team here at in28minutes.
-- To find out more about *** use these References  
+[Click here - 30+ Playlists with 500+ Videos on Spring, Spring Boot, REST, Microservices and the Cloud](https://www.youtube.com/user/rithustutorials/playlists?view=1&sort=lad&flow=list)
 
-## Templates
+## Keep Learning in28Minutes
 
-### Welcome Message
-```
+in28Minutes is creating amazing solutions for you to learn Spring Boot, Full Stack and the Cloud - Docker, Kubernetes, AWS, React, Angular etc. - [Check out all our courses here](https://github.com/in28minutes/learn)
 
-## ADD A FEW SAMPLE REVIEWS AFter a couple of months
-## ADD A FEW SAMPLE REVIEWS - in the description of the course 
-
-Congratulations on joining this course from in28Minutes. 
-
-We have 6800+ 5 Star reviews on our courses.  
-
-I hope that by the time you are prompted to leave a review, that you think this course is an amazing course and can write a few sentences about what you like about the course for future students to see. If you do not think this course is a 5-star course, we want to make it a better course for you! Please message me with ways that I can make it the best course for you.
-
-There are three things you need to understand before you start this course!
-
-1...... Listen + See + Do Hands-on + Repeat = 90% Retention
-For the first 2 hours, we repeat a few concepts to help you retain them. .
-
-2...... Set Yourself a Goal
-Set 1 hour aside every day for the next week for this course! No exceptions allowed :) 
-
-3...... Udemy asks you for a review very early in the course! If you are not ready for giving a review, you can skip giving a review.
-
-Thank you and enjoy the course,
-Ranga
-```
-
-### Thank You for completing the course message
-
-```
-Congratulations on completing the course from in28Minutes.
-
-We have 6800+ 5 Star reviews on our courses. We hope you think this course is an amazing course and can write a few sentences about what you like about the course for future students to see.
-
-We are on a constant journey to improve our courses further. Do message me if you have any suggestions.
-
-Good Luck for your future.
-
-Ranga from in28Minutes
-```
-
-### Bonus Lectures
-
-```
-Our Best Selling Courses
-Get unbelievable offers on all our best-selling courses!
-http://eepurl.com/bOJulL
-
-```
-  
-### Useful Links
-- [Subscribe and get Amazing Offers](http://eepurl.com/bOJulL)
-- [Our Website](http://www.in28minutes.com)
-- [Facebook](http://facebook.com/in28minutes)
-- [Twitter](http://twitter.com/in28minutes)
-- [Google Plus](https://plus.google.com/u/3/110861829188024231119)
+![in28MinutesLearningRoadmap-July2019.png](https://github.com/in28minutes/in28Minutes-Course-Roadmap/raw/master/in28MinutesLearningRoadmap-July2019.png)
