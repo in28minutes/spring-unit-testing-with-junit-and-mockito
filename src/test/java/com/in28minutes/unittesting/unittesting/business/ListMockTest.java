@@ -1,6 +1,6 @@
 package com.in28minutes.unittesting.unittesting.business;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.atLeastOnce;
@@ -15,8 +15,8 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
 public class ListMockTest {
@@ -37,7 +37,7 @@ public class ListMockTest {
 	}
 
 	@Test
-	@Ignore
+	@Disabled
 	public void returnWithParameters() {
 		when(mock.get(0)).thenReturn("in28Minutes");
 		assertEquals("in28Minutes", mock.get(0));

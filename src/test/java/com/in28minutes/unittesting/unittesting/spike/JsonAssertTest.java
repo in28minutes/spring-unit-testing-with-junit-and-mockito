@@ -1,7 +1,7 @@
 package com.in28minutes.unittesting.unittesting.spike;
 
 import org.json.JSONException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 
 public class JsonAssertTest {
