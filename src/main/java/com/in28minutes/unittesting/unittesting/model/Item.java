@@ -1,8 +1,9 @@
 package com.in28minutes.unittesting.unittesting.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+// Change from javax to jakarta
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 
 @Entity
 public class Item {
