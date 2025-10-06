@@ -31,6 +31,11 @@ public class SomeBusinessMockTest {
 		when(dataServiceMock.retrieveAllData()).thenReturn(new int[] {});
 		assertEquals(0, business.calculateSumUsingDataService());
 	}
+	@Test
+	public void calculateSumUsingDataService_empty_fail() {
+		when(dataServiceMock.retrieveAllData()).thenReturn(new int[] {});
+		assertEquals(2, business.calculateSumUsingDataService());
+	}
 
 	@Test
 	public void calculateSumUsingDataService_oneValue() {

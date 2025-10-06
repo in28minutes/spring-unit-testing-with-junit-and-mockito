@@ -100,6 +100,7 @@ public class ListMockTest {
 		
 	}
 
+
 	@Test
 	public void mocking() {
 		ArrayList arrayListMock = mock(ArrayList.class);
@@ -112,6 +113,17 @@ public class ListMockTest {
 		System.out.println(arrayListMock.size());//5
 	}
 
+	@Test
+	public void mockingFail() {
+		ArrayList arrayListMock = mock(ArrayList.class);
+		System.out.println(arrayListMock.get(0));//null
+		System.out.println(arrayListMock.size());//0
+		arrayListMock.add("Test");
+		arrayListMock.add("Test2");
+		System.out.println(arrayListMock.size());//0
+		when(arrayListMock.size()).thenReturn(6);
+		System.out.println(arrayListMock.size());//5
+	}
 	@Test
 	public void spying() {
 		ArrayList arrayListSpy = spy(ArrayList.class);

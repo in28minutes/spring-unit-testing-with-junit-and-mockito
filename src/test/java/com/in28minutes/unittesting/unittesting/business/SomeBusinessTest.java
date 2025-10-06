@@ -30,4 +30,11 @@ public class SomeBusinessTest {
 		int expectedResult = 5;
 		assertEquals(expectedResult, actualResult);	
 	}
+	@Test
+	public void calculateSum_oneValue_fail() {
+		SomeBusinessImpl business = new SomeBusinessImpl();
+		int actualResult = business.calculateSum(new int[] { 5});
+		int expectedResult = 7;
+		assertEquals(expectedResult, actualResult);
+	}
 }
