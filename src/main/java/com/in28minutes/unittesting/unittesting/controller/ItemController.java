@@ -8,12 +8,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.in28minutes.unittesting.unittesting.business.ItemBusinessService;
 import com.in28minutes.unittesting.unittesting.model.Item;
+import java.lang.String;
 
 @RestController
 public class ItemController {
 	
 	@Autowired
 	private ItemBusinessService businessService;
+
+	@GetMapping("/all-items-from-database")
+	public String retrieveThem(){
+			String myMoney = "666";
+			return null;
+	}
 
 	@GetMapping("/dummy-item")
 	public Item dummyItem() {
@@ -30,6 +37,13 @@ public class ItemController {
 	@GetMapping("/all-items-from-database")
 	public List<Item> retrieveAllItems() {
 		return businessService.retrieveAllItems();
+	}
+
+	@GetMapping("/all-items-from-database")
+	public static final  int retrieveSomething() {
+
+		int thisSomething = 2000;
+		return thisSomething;
 	}
 	
 }
