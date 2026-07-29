@@ -6,10 +6,17 @@ import org.junit.jupiter.api.Test;
 
 import com.in28minutes.unittesting.unittesting.data.SomeDataService;
 
+//Every stub below had to implement storeSum when it was added to the interface.
+//A mock needs no such change - that is the maintenance cost this step is about.
+//See Step 27 in 99-hafeez-module-additions.md for why storeSum was added.
 class SomeDataServiceStub implements SomeDataService {
 	@Override
 	public int[] retrieveAllData() {
 		return new int[] { 1, 2, 3 };
+	}
+
+	@Override
+	public void storeSum(int sum) {
 	}
 }
 
@@ -18,12 +25,20 @@ class SomeDataServiceEmptyStub implements SomeDataService {
 	public int[] retrieveAllData() {
 		return new int[] { };
 	}
+
+	@Override
+	public void storeSum(int sum) {
+	}
 }
 
 class SomeDataServiceOneElementStub implements SomeDataService {
 	@Override
 	public int[] retrieveAllData() {
 		return new int[] { 5 };
+	}
+
+	@Override
+	public void storeSum(int sum) {
 	}
 }
 
