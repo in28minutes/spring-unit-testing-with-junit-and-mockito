@@ -29,8 +29,10 @@ class ItemBusinessServiceSpyBeanTest {
 		List<Item> items = businessService.retrieveAllItems();
 
 		//The three rows from data.sql came back, so nothing was stubbed away.
-		assertThat(items).hasSize(3);
-		assertThat(items.get(0).getValue()).isEqualTo(200);
+		//findAll() has no ORDER BY, so assert the values as a set, not by position.
+		assertThat(items).hasSize(3)
+				.extracting(Item::getValue)
+				.containsExactlyInAnyOrder(200, 50, 30);
 
 		verify(repository).findAll();
 	}

@@ -64,21 +64,11 @@ class SomeBusinessAssertionsTest {
 	class StoreSumUsingDataService {
 
 		//Returns void, so there is nothing to assert on. Verification is the only option.
-		@Test
-		@DisplayName("stores the sum it just calculated")
-		void storesTheCalculatedSum() {
-			when(dataServiceMock.retrieveAllData()).thenReturn(new int[] { 1, 2, 3 });
-
-			business.storeSumUsingDataService();
-
-			verify(dataServiceMock).storeSum(6);
-		}
-
-		//Fails the test instead of hanging the build if the call ever starts blocking.
+		//@Timeout fails the test instead of hanging the build if this ever starts blocking.
 		@Test
 		@Timeout(value = 500, unit = TimeUnit.MILLISECONDS)
-		@DisplayName("finishes well inside half a second")
-		void finishesQuickly() {
+		@DisplayName("stores the sum it just calculated, well inside half a second")
+		void storesTheCalculatedSum() {
 			when(dataServiceMock.retrieveAllData()).thenReturn(new int[] { 1, 2, 3 });
 
 			business.storeSumUsingDataService();

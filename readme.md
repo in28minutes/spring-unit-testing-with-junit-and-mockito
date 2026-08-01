@@ -183,8 +183,8 @@ Versions this project builds against - Spring Boot 4.0.0, spring-test 7.0.1, JUn
 ### JUnit 6
 - JUnit User Guide - https://docs.junit.org/current/user-guide/
 - Test Classes and Methods - visibility rules - https://docs.junit.org/current/writing-tests/test-classes-and-methods.html
-- Parameterized Tests - https://docs.junit.org/current/user-guide/#writing-tests-parameterized-tests
-- Nested Tests - https://docs.junit.org/current/user-guide/#writing-tests-nested
+- Parameterized Classes and Tests - https://docs.junit.org/current/writing-tests/parameterized-classes-and-tests.html
+- Nested Tests - https://docs.junit.org/current/writing-tests/nested-tests.html
 - Spring TestContext support for JUnit Jupiter - https://docs.spring.io/spring-framework/reference/testing/annotations/integration-junit-jupiter.html
 
 ### Mockito

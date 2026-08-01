@@ -16,20 +16,20 @@ These are the **new** steps added on top of the existing Steps 01 to 26. Nothing
 | Step 27 | JUnit 6 assertions - `@DisplayName`, `assertThrows`, `assertAll`, `@Nested`, `@Timeout` |
 | Step 28 | `@ParameterizedTest` - `@ValueSource`, `@CsvSource`, `@MethodSource` |
 | Step 29 | `MockMvcTester` - AssertJ native controller tests |
-| Step 30 | `@JsonTest` and `JacksonTester` - the JSON slice |
+| Step 30 | `@JsonTest` and `JacksonTester` - testing serialization on its own |
 | Step 31 | `@MockitoSpyBean` and `@TestBean` - the other two bean overrides |
 | Step 32 | `RestTestClient` with its own assertions |
 | Step 33 | Coverage with JaCoCo, and integration tests that run in the build |
 
-**Why these steps were needed.** Three gaps, all confirmed against the resolved dependency tree rather than assumed:
+**Why these steps were needed.** Three gaps, each confirmed against the resolved dependency tree:
 
 1. **The course says JUnit 5, the build resolves JUnit Jupiter 6.0.1.** And across 26 steps the JUnit surface is `@Test` and `assertEquals`. No parameterized tests, no `assertThrows`, no `@Nested`.
 2. **`MockMvcTester` is auto-configured and never used.** `@WebMvcTest` wires it up whenever AssertJ is on the classpath, which it always is.
 3. **`ItemControllerIT` never ran.** Surefire's default includes are `**/Test*.java`, `**/*Test.java`, `**/*Tests.java` and `**/*TestCase.java` - `*IT` matches none of them. The integration test from Step 15 has been passing in the IDE and silently skipped by `mvn test`.
 
-Worth saying on the recording: none of Steps 27, 28 or 31 is exotic. The `@API` metadata in the jars puts `@Nested` at stable since JUnit 5.0 and `@ParameterizedTest` since 5.7; `@TestBean` arrived in Spring Framework 6.2. They were simply never covered here. Only `MockMvcTester` and `RestTestClient` are genuinely recent.
+Worth saying on the recording: none of Steps 27, 28 or 31 is exotic. The `@API` metadata in the jars puts `@Nested` at stable since JUnit 5.0 and `@ParameterizedTest` since 5.7; `@TestBean` arrived in Spring Framework 6.2. They were never covered here. Only `MockMvcTester` and `RestTestClient` are genuinely recent.
 
-**Versions this was built against** - `mvn dependency:tree`, not from memory:
+**Versions this was built against**, from `mvn dependency:tree`:
 
 | Library | Version |
 |---|---|
@@ -64,11 +64,15 @@ public void storeSumUsingDataService() {
 }
 ```
 
-**All three handwritten stubs had to implement it.** That is a gift to **Step 04** - that step claims stubs are a maintenance burden, and now it can show it live. On screen: *"I added one method to the interface and every stub class went red. A mock needs no such change."*
+**All three handwritten stubs had to implement it.** That is useful for **Step 04** - that step claims stubs are a maintenance burden, and it can now show it live. On screen: *"I added one method to the interface and every stub class went red. A mock needs no such change."*
 
 **`ListMockTest` uses `mock()` type inference** instead of raw `List` and `ArrayList`, so no more unchecked warnings on screen.
 
 **`spring.jpa.open-in-view=false`** in both `application.properties` files. It removes a `WARN` line from every Spring context startup.
+
+**The dead `//someDataService.storeSum(sum);` comment** was removed from `calculateSumUsingDataService` - there is a real `storeSum` now, so the placeholder is more confusing than useful.
+
+> **Note on the code snapshots.** `00.code-after-preparation.md`, `01.code-after-integration-test.md` and `02.Final.md` capture the code as of **Steps 01 to 26** and deliberately predate everything above - their `SomeDataService` has no `storeSum` and their stubs do not implement it. They are still correct as snapshots. Copy a *whole* file from them and the project builds; copy `SomeDataService.java` alone into the current tree and `SomeBusinessStubTest` will not compile.
 
 ## Dependencies
 
@@ -148,7 +152,7 @@ public void storeSumUsingDataService() {
 Three details worth a sentence each on the recording:
 
 - Mockito used to self-attach its Java agent at runtime, which printed a notice plus five warning lines on every run. [JEP 451](https://openjdk.org/jeps/451) asks libraries to load the agent at startup instead. `-Xshare:off` silences the class data sharing warning that appending to the bootstrap classpath causes.
-- `@{argLine}` is **late replacement**, available since Surefire 2.17. Maven resolves `${...}` before any plugin runs, so `${argLine}` would be substituted before JaCoCo ever sets it and coverage would silently record nothing. `@{...}` is read when surefire executes. `-Djacoco.skip=true` stays safe - `prepare-agent` still sets the property, to empty.
+- `@{argLine}` is **late replacement**, available since Surefire 2.17. Maven resolves `${...}` before any plugin runs, so `${argLine}` would be substituted before JaCoCo ever sets it and coverage would silently record nothing. `@{...}` is read when surefire executes. `-Djacoco.skip=true` stays safe for a different reason: `prepare-agent` is skipped and never sets the property at all, and Surefire replaces an unresolvable `@{...}` with the empty string - which is exactly what `${...}` does *not* do.
 - The `-javaagent` path is quoted, so it survives a local repository under a folder with a space in the name.
 
 ---
@@ -203,21 +207,11 @@ class SomeBusinessAssertionsTest {
 	class StoreSumUsingDataService {
 
 		//Returns void, so there is nothing to assert on. Verification is the only option.
-		@Test
-		@DisplayName("stores the sum it just calculated")
-		void storesTheCalculatedSum() {
-			when(dataServiceMock.retrieveAllData()).thenReturn(new int[] { 1, 2, 3 });
-
-			business.storeSumUsingDataService();
-
-			verify(dataServiceMock).storeSum(6);
-		}
-
-		//Fails the test instead of hanging the build if the call ever starts blocking.
+		//@Timeout fails the test instead of hanging the build if this ever starts blocking.
 		@Test
 		@Timeout(value = 500, unit = TimeUnit.MILLISECONDS)
-		@DisplayName("finishes well inside half a second")
-		void finishesQuickly() {
+		@DisplayName("stores the sum it just calculated, well inside half a second")
+		void storesTheCalculatedSum() {
 			when(dataServiceMock.retrieveAllData()).thenReturn(new int[] { 1, 2, 3 });
 
 			business.storeSumUsingDataService();
@@ -235,8 +229,9 @@ class SomeBusinessAssertionsTest {
 - `@Nested` is what makes the tree in the IDE readable - `SomeBusinessImpl > calculateSum > adds up every value in the array`. Show the runner panel, not the code.
 - `@DisplayName` is the sentence a non-Java reader can follow. Method names stay for the compiler.
 - Tests are **package-private**. The JUnit guide is explicit - test classes, methods and lifecycle methods *"are not required to be `public`, but they must not be `private`"* - and it recommends dropping `public` unless there is a technical reason. Steps 01 to 26 are left as they are; that is 26 steps of screenshots to reshoot otherwise.
+- **One caveat if this ever runs in CI.** The four tests here execute and are counted in Surefire's console total, but Surefire writes no XML report for a `@Nested` class - `TEST-...SomeBusinessAssertionsTest.xml` records `tests="0"`. So the console says 56 while `target/surefire-reports/*.xml` sums to 52. Any tool that reads those XML files - Jenkins, a GitHub Actions test reporter, Sonar - will under-report by four. It is a Surefire reporting limitation, not a skipped test; overriding Surefire's `**/*$*` exclude does not change it.
 
-[JUnit User Guide](https://docs.junit.org/current/user-guide/) | [@Nested](https://docs.junit.org/current/user-guide/#writing-tests-nested)
+[JUnit User Guide](https://docs.junit.org/current/user-guide/) | [Nested Tests](https://docs.junit.org/current/writing-tests/nested-tests.html)
 
 ---
 
@@ -290,7 +285,7 @@ class SomeBusinessParameterizedTest {
 - `@MethodSource` resolves the factory by method name. Here it is `static` and returns a `Stream<Arguments>`; `Iterable` and arrays work too.
 - The `-5, 5, 0` row in `@CsvSource` costs one line and covers negatives, which the original three tests never did.
 
-[Parameterized Tests](https://docs.junit.org/current/user-guide/#writing-tests-parameterized-tests)
+[Parameterized Classes and Tests](https://docs.junit.org/current/writing-tests/parameterized-classes-and-tests.html)
 
 ---
 
@@ -348,6 +343,16 @@ class ItemControllerMockMvcTesterTest {
 				.hasPathSatisfying("$.length()", length -> assertThat(length).isEqualTo(2))
 				.hasPathSatisfying("$[0].name", name -> assertThat(name).isEqualTo("Item2"));
 	}
+
+	@Test
+	void retrieveAllItems_noitems() {
+		when(businessService.retrieveAllItems()).thenReturn(List.of());
+
+		assertThat(mvc.get().uri("/all-items-from-database").accept(MediaType.APPLICATION_JSON))
+				.hasStatusOk()
+				.bodyJson()
+				.isLenientlyEqualTo("[]");
+	}
 }
 ```
 
@@ -364,7 +369,7 @@ class ItemControllerMockMvcTesterTest {
 
 ---
 
-### **Step 30 - @JsonTest - Testing Serialization on Its Own**
+### **Step 30 - @JsonTest and JacksonTester - Testing Serialization on Its Own**
 
 Step 05 tests `Item`'s JSON by starting a web context and firing a request at a controller. If the only question is *"does `Item` serialize correctly"*, that is a lot of machinery for the answer.
 
@@ -432,8 +437,10 @@ class ItemBusinessServiceSpyBeanTest {
 		List<Item> items = businessService.retrieveAllItems();
 
 		//The three rows from data.sql came back, so nothing was stubbed away.
-		assertThat(items).hasSize(3);
-		assertThat(items.get(0).getValue()).isEqualTo(200);
+		//findAll() has no ORDER BY, so assert the values as a set, not by position.
+		assertThat(items).hasSize(3)
+				.extracting(Item::getValue)
+				.containsExactlyInAnyOrder(200, 50, 30);
 
 		verify(repository).findAll();
 	}
@@ -508,7 +515,8 @@ class ItemControllerRestTestClientIT {
 				.expectBody().json("[{id:10001},{id:10002},{id:10003}]");
 	}
 
-	//jsonPath drills into single values, so the whole payload does not have to be spelled out
+	//jsonPath drills into single values, so the whole payload does not have to be spelled out.
+	//findAll() has no ORDER BY, so $..name collects every name rather than indexing into $[0].
 	@Test
 	void retrieveAllItems_individualValues() {
 		restTestClient.get().uri("/all-items-from-database")
@@ -517,8 +525,10 @@ class ItemControllerRestTestClientIT {
 				.expectStatus().isOk()
 				.expectBody()
 				.jsonPath("$.length()").isEqualTo(3)
-				.jsonPath("$[0].name").isEqualTo("Item1")
-				.jsonPath("$[0].value").isEqualTo(200);
+				.jsonPath("$..name").value((List<String> names) ->
+						assertThat(names).containsExactlyInAnyOrder("Item1", "Item2", "Item3"))
+				.jsonPath("$..value").value((List<Integer> values) ->
+						assertThat(values).containsExactlyInAnyOrder(200, 50, 30));
 	}
 
 	@Test
@@ -534,7 +544,8 @@ class ItemControllerRestTestClientIT {
 
 - Show the old `new String(...getResponseBodyContent())` line, then this. Same test, no plumbing.
 - `.json(...)` is lenient by default - the same behaviour as `JSONAssert.assertEquals(expected, actual, false)` from Step 06.
-- **This is a real HTTP call** on a random port, through the real controller, business service, repository and H2. `$[0].value` is `200` because `ItemBusinessService` multiplied price by quantity - every layer ran.
+- **This is a real HTTP call** on a random port, through the real controller, business service, repository and H2. The values come back as `200`, `50` and `30` because `ItemBusinessService` multiplied price by quantity on every row of `data.sql` - every layer ran.
+- **Why `$..name` and not `$[0].name`.** `findAll()` carries no `ORDER BY`, so nothing in JPA, H2 or the HTTP layer promises the rows arrive in insert order. Indexing into `$[0]` passes today and can fail on another machine or another H2 version. `$..` collects every match and the assertion compares them as a set. Same point in `ItemBusinessServiceSpyBeanTest`. Worth thirty seconds on the recording - order dependence is one of the most common causes of a flaky test.
 - `TestRestTemplate` still ships in Boot 4, but it moved to `org.springframework.boot.resttestclient` and now needs its own dependency. It is not yet marked `@Deprecated`; `RestTestClient` is the direction of travel, in step with `RestTemplate` giving way to `RestClient`.
 
 [RestTestClient javadoc](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/servlet/client/RestTestClient.html) | [The state of HTTP clients in Spring](https://spring.io/blog/2025/09/30/the-state-of-http-clients-in-spring)
@@ -548,8 +559,8 @@ Two build problems, one step.
 **The integration test was never running.** Surefire's default includes are `Test*`, `*Test`, `*Tests` and `*TestCase`. `ItemControllerIT` matches none of them. It has been green in the IDE and skipped by Maven this whole time. `maven-failsafe-plugin` is the piece that runs `*IT` classes, and it binds to `verify`, after the application has been packaged.
 
 ```
-mvn test      -> 57 tests, unit tests only
-mvn verify    -> 57 + 4 integration tests, then the coverage report
+mvn test      -> 56 tests, unit tests only
+mvn verify    -> 56 + 4 integration tests, then the coverage report
 ```
 
 **Coverage without the IDE.** Step 24 uses `Run As > Coverage As > JUnit Test` in Eclipse. That works, but it is Eclipse-only and cannot run in CI. JaCoCo produces the same report from the command line.
@@ -581,7 +592,7 @@ open target/site/jacoco/index.html
 
 - **Testcontainers.** A real PostgreSQL beats H2 for integration tests, but it needs Docker running while you record. Too fragile for a beginner module, and H2 already makes the teaching point.
 - **Awaitility.** Ships in the starter at 4.3.0, but there is no async code here to wait on. Nothing to demonstrate.
-- **`@ParameterizedClass`.** New in JUnit 6 and genuinely useful, but still marked `EXPERIMENTAL` in the `@API` metadata, and it is the advanced form of Step 28. Name it, do not demo it.
+- **`@ParameterizedClass`.** Added in JUnit 5.13 and genuinely useful, but still marked `EXPERIMENTAL` in the `@API` metadata of the 6.0.1 jars, and it is the advanced form of Step 28. Name it, do not demo it.
 - **PowerMock.** Mockito 5 makes the inline mock maker the default, so static and final mocking need no extra dependency.
 - **Upgrading past Spring Boot 4.0.0.** 4.1.0 went GA on 10 June 2026 and removes everything 4.0 deprecated, so the upgrade is worth planning. It is a separate decision from these steps - flagging it, not doing it here.
 
@@ -590,7 +601,7 @@ open target/site/jacoco/index.html
 **Verification:** `mvn clean verify` from the project root.
 
 ```
-Tests run: 57, Failures: 0, Errors: 0, Skipped: 1   (surefire)
+Tests run: 56, Failures: 0, Errors: 0, Skipped: 1   (surefire)
 Tests run: 4,  Failures: 0, Errors: 0, Skipped: 0   (failsafe)
 BUILD SUCCESS
 ```

@@ -1,5 +1,9 @@
 package com.in28minutes.unittesting.unittesting.controller;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient;
@@ -27,7 +31,8 @@ class ItemControllerRestTestClientIT {
 				.expectBody().json("[{id:10001},{id:10002},{id:10003}]");
 	}
 
-	//jsonPath drills into single values, so the whole payload does not have to be spelled out
+	//jsonPath drills into single values, so the whole payload does not have to be spelled out.
+	//findAll() has no ORDER BY, so $..name collects every name rather than indexing into $[0].
 	@Test
 	void retrieveAllItems_individualValues() {
 		restTestClient.get().uri("/all-items-from-database")
@@ -36,8 +41,10 @@ class ItemControllerRestTestClientIT {
 				.expectStatus().isOk()
 				.expectBody()
 				.jsonPath("$.length()").isEqualTo(3)
-				.jsonPath("$[0].name").isEqualTo("Item1")
-				.jsonPath("$[0].value").isEqualTo(200);
+				.jsonPath("$..name").value((List<String> names) ->
+						assertThat(names).containsExactlyInAnyOrder("Item1", "Item2", "Item3"))
+				.jsonPath("$..value").value((List<Integer> values) ->
+						assertThat(values).containsExactlyInAnyOrder(200, 50, 30));
 	}
 
 	@Test
