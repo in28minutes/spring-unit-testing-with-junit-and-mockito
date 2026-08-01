@@ -155,6 +155,14 @@ Three details worth a sentence each on the recording:
 - `@{argLine}` is **late replacement**, available since Surefire 2.17. Maven resolves `${...}` before any plugin runs, so `${argLine}` would be substituted before JaCoCo ever sets it and coverage would silently record nothing. `@{...}` is read when surefire executes. `-Djacoco.skip=true` stays safe for a different reason: `prepare-agent` is skipped and never sets the property at all, and Surefire replaces an unresolvable `@{...}` with the empty string - which is exactly what `${...}` does *not* do.
 - The `-javaagent` path is quoted, so it survives a local repository under a folder with a space in the name.
 
+## Two Boot 4 migration points these steps rely on
+
+Both are already handled in the code. Neither is obvious from reading it, and both are the kind of thing that breaks a student's own upgrade, so they are worth naming out loud.
+
+**`@SpringBootTest` no longer hands you an HTTP client.** In Boot 3, `@SpringBootTest(webEnvironment = RANDOM_PORT)` gave you a `TestRestTemplate` bean for free. Boot 4 provides neither `TestRestTemplate` nor `WebClient` by default. That is why both integration tests carry `@AutoConfigureRestTestClient`, and why the pom needs `spring-boot-starter-restclient-test`. Remove either and the `@Autowired RestTestClient` fails to inject. [Migration guide](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide#using-webclient-or-testresttemplate-and-springboottest)
+
+**`MockitoTestExecutionListener` is gone.** Boot used to process `@Mock` and `@Captor` through its own listener, so those fields worked in a Spring test without anything else. It was deprecated in 3.4 and removed in 4.0 - Mockito's own `@ExtendWith(MockitoExtension.class)` is now the only thing that initialises them. `SomeBusinessMockTest`, `ItemBusinessServiceTest` and `SomeBusinessAssertionsTest` all declare it. Drop the annotation and every `@Mock` field is silently `null`. [Migration guide](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide#upgrading-testing-features)
+
 ---
 
 ### **Step 27 - Beyond assertEquals**
@@ -590,7 +598,7 @@ open target/site/jacoco/index.html
 
 ## Not included, and why
 
-- **Testcontainers.** A real PostgreSQL beats H2 for integration tests, but it needs Docker running while you record. Too fragile for a beginner module, and H2 already makes the teaching point.
+- **Testcontainers.** A real PostgreSQL beats H2 for integration tests, but it needs Docker running while you record. Too fragile for a beginner module, and H2 already makes the teaching point. Worth naming as the next step for anyone going to production - `spring-boot-testcontainers` plus `@ServiceConnection` wires a container to the datasource with no property plumbing at all. [Testcontainers reference](https://docs.spring.io/spring-boot/reference/testing/testcontainers.html)
 - **Awaitility.** Ships in the starter at 4.3.0, but there is no async code here to wait on. Nothing to demonstrate.
 - **`@ParameterizedClass`.** Added in JUnit 5.13 and genuinely useful, but still marked `EXPERIMENTAL` in the `@API` metadata of the 6.0.1 jars, and it is the advanced form of Step 28. Name it, do not demo it.
 - **PowerMock.** Mockito 5 makes the inline mock maker the default, so static and final mocking need no extra dependency.

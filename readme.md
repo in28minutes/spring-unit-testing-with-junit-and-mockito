@@ -165,6 +165,9 @@ Versions this project builds against - Spring Boot 4.0.0, spring-test 7.0.1, JUn
 ### Spring Boot 4 and Spring Framework 7
 - Testing Spring Boot Applications - https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html
 - Spring Boot 4.0 Migration Guide - https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
+- Migration Guide - Upgrading Testing Features - https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide#upgrading-testing-features
+- Migration Guide - WebClient / TestRestTemplate and @SpringBootTest - https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide#using-webclient-or-testresttemplate-and-springboottest
+- Testcontainers with Spring Boot - https://docs.spring.io/spring-boot/reference/testing/testcontainers.html
 - What's new for testing in Spring Boot 4 and Spring Framework 7 - https://rieckpil.de/whats-new-for-testing-in-spring-boot-4-0-and-spring-framework-7/
 - The state of HTTP clients in Spring - RestTemplate to RestClient - https://spring.io/blog/2025/09/30/the-state-of-http-clients-in-spring
 
