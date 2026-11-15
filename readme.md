@@ -18,8 +18,8 @@ You will learn to use the most important Unit Testing Annotations - @ExtendWith(
 
 ### Recommended Tools
 - Java 17 or Later
-- Eclipse Oxygen or Later
-- Spring Boot 3.0.x or 4.0.x 
+- Eclipse Oxygen, IntelliJ IDEA or Later
+- Spring Boot 3.0.x or 4.x.x 
 
 ### Installing Java 8 and Eclipse
 - Installation Video : https://www.youtube.com/playlist?list=PLBBog2r6uMCSmMVTW_QmDLyASBvovyAO3
