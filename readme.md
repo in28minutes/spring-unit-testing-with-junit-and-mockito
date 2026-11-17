@@ -128,6 +128,22 @@ org.hamcrest.MatcherAssert
 - Step 25: Tip : Keep an eye on performance of unit tests!
 - Step 26: Good Unit Tests
 
+### Additions - Spring Boot 4, Spring Framework 7 and JUnit 6
+
+Details, code and references - [99-hafeez-module-additions.md](99-hafeez-module-additions.md)
+
+- Step 27: JUnit 6 Assertions - @DisplayName, assertThrows, assertAll, @Nested, @Timeout
+- Step 28: One Parameterized Test Replaces Three - @ValueSource, @CsvSource, @MethodSource
+- Step 29: MockMvcTester - MockMvc with AssertJ
+- Step 30: @JsonTest and JacksonTester - Testing Serialization on Its Own
+- Step 31: The Other Two Bean Overrides - @MockitoSpyBean and @TestBean
+- Step 32: RestTestClient, Using Its Own Assertions
+- Step 33: Coverage with JaCoCo, and the Tests That Were Not Running
+
+```
+mvn test      # unit tests
+mvn verify    # unit tests + integration tests + target/site/jacoco/index.html
+```
 
 ### Troubleshooting
 - Refer our TroubleShooting Guide - https://github.com/in28minutes/in28minutes-initiatives/tree/master/The-in28Minutes-TroubleshootingGuide-And-FAQ
@@ -141,3 +157,46 @@ org.hamcrest.MatcherAssert
 in28Minutes is creating amazing solutions for you to learn Spring Boot, Full Stack and the Cloud - Docker, Kubernetes, AWS, React, Angular etc. - [Check out all our courses here](https://github.com/in28minutes/learn)
 
 ![in28MinutesLearningRoadmap-July2019.png](https://github.com/in28minutes/in28Minutes-Course-Roadmap/raw/master/in28MinutesLearningRoadmap-July2019.png)
+
+## References
+
+Versions this project builds against - Spring Boot 4.0.0, spring-test 7.0.1, JUnit Jupiter 6.0.1, Mockito 5.20.0, AssertJ 3.27.6, Hamcrest 3.0, JSONassert 1.5.3, JsonPath 2.9.0.
+
+### Spring Boot 4 and Spring Framework 7
+- Testing Spring Boot Applications - https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html
+- Spring Boot 4.0 Migration Guide - https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide
+- Migration Guide - Upgrading Testing Features - https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide#upgrading-testing-features
+- Migration Guide - WebClient / TestRestTemplate and @SpringBootTest - https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide#using-webclient-or-testresttemplate-and-springboottest
+- Testcontainers with Spring Boot - https://docs.spring.io/spring-boot/reference/testing/testcontainers.html
+- What's new for testing in Spring Boot 4 and Spring Framework 7 - https://rieckpil.de/whats-new-for-testing-in-spring-boot-4-0-and-spring-framework-7/
+- The state of HTTP clients in Spring - RestTemplate to RestClient - https://spring.io/blog/2025/09/30/the-state-of-http-clients-in-spring
+
+### MockMvc and REST testing
+- MockMvc AssertJ support - MockMvcTester - https://docs.spring.io/spring-framework/reference/testing/mockmvc/assertj.html
+- MockMvcTester javadoc - https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/servlet/assertj/MockMvcTester.html
+- RestTestClient javadoc - https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/servlet/client/RestTestClient.html
+- @JsonTest javadoc - https://docs.spring.io/spring-boot/api/java/org/springframework/boot/test/autoconfigure/json/JsonTest.html
+- JacksonTester javadoc - https://docs.spring.io/spring-boot/api/java/org/springframework/boot/test/json/JacksonTester.html
+
+### Bean overriding - @MockitoBean, @MockitoSpyBean, @TestBean
+- Bean Overriding in Tests - https://docs.spring.io/spring-framework/reference/testing/testcontext-framework/bean-overriding.html
+- @MockitoBean and @MockitoSpyBean - https://docs.spring.io/spring-framework/reference/testing/annotations/integration-spring/annotation-mockitobean.html
+- @TestBean - https://docs.spring.io/spring-framework/reference/testing/annotations/integration-spring/annotation-testbean.html
+
+### JUnit 6
+- JUnit User Guide - https://docs.junit.org/current/user-guide/
+- Test Classes and Methods - visibility rules - https://docs.junit.org/current/writing-tests/test-classes-and-methods.html
+- Parameterized Classes and Tests - https://docs.junit.org/current/writing-tests/parameterized-classes-and-tests.html
+- Nested Tests - https://docs.junit.org/current/writing-tests/nested-tests.html
+- Spring TestContext support for JUnit Jupiter - https://docs.spring.io/spring-framework/reference/testing/annotations/integration-junit-jupiter.html
+
+### Mockito
+- Mockito javadoc - https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html
+- Mockito as a Java agent - JEP 451 - https://openjdk.org/jeps/451
+
+### Build and coverage
+- JaCoCo Maven plugin - https://www.jacoco.org/jacoco/trunk/doc/maven.html
+- JaCoCo change history and supported Java versions - https://www.jacoco.org/jacoco/trunk/doc/changes.html
+- maven-failsafe-plugin - running *IT integration tests - https://maven.apache.org/surefire/maven-failsafe-plugin/
+- maven-surefire-plugin default test includes - https://maven.apache.org/surefire/maven-surefire-plugin/test-mojo.html#includes
+- Introducing Jackson 3 support in Spring - https://spring.io/blog/2025/10/07/introducing-jackson-3-support-in-spring/

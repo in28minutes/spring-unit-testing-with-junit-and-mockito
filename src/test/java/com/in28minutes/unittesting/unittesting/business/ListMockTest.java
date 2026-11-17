@@ -21,7 +21,8 @@ import org.mockito.ArgumentCaptor;
 
 public class ListMockTest {
 
-	List<String> mock = mock(List.class);
+	//mock() infers the type from the variable, so List.class is not needed
+	List<String> mock = mock();
 
 	@Test
 	public void size_basic() {
@@ -102,7 +103,7 @@ public class ListMockTest {
 
 	@Test
 	public void mocking() {
-		ArrayList arrayListMock = mock(ArrayList.class);
+		ArrayList<String> arrayListMock = mock();
 		System.out.println(arrayListMock.get(0));//null
 		System.out.println(arrayListMock.size());//0
 		arrayListMock.add("Test");
@@ -114,7 +115,7 @@ public class ListMockTest {
 
 	@Test
 	public void spying() {
-		ArrayList arrayListSpy = spy(ArrayList.class);
+		ArrayList<String> arrayListSpy = spy(new ArrayList<>());
 		arrayListSpy.add("Test0");
 		System.out.println(arrayListSpy.get(0));//Test0
 		System.out.println(arrayListSpy.size());//1

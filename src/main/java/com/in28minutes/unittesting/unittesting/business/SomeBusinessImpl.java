@@ -27,10 +27,13 @@ public class SomeBusinessImpl {
 			sum += value;
 		}
 		
-		//someDataService.storeSum(sum);
 		return sum;
 		//Functional Style
 		//return Arrays.stream(data).reduce(Integer::sum).orElse(0);
+	}
+
+	public void storeSumUsingDataService() {
+		someDataService.storeSum(calculateSumUsingDataService());
 	}
 
 }
